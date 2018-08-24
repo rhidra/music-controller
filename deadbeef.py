@@ -1,4 +1,5 @@
-from player import Player, run_command
+from player import Player
+from utils import run_command
 
 
 class DeadbeefPlayer(Player):

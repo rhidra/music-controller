@@ -3,7 +3,8 @@
 from deadbeef import DeadbeefPlayer
 from spotify import SpotifyPlayer
 from mocp import MocpPlayer
-from player import Player, notif
+from player import Player
+from utils import notif
 import sys
 
 
