@@ -3,6 +3,7 @@
 from deadbeef import DeadbeefPlayer
 from spotify import SpotifyPlayer
 from mocp import MocpPlayer
+from youtube import YoutubePlayer
 from player import Player
 from utils import notif
 import sys
@@ -10,10 +11,10 @@ import sys
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print("Usage: player_control.py <next | prev | stop | toggle | status>")
+        print("Usage: player_control.py <next | prev | stop | toggle | status | artist | title>")
         exit()
-    elif sys.argv[1] not in ["next", "prev", "stop", "toggle", "status"]:
-        print("Usage: player_control.py <next | prev | stop | toggle | status>")
+    elif sys.argv[1] not in ["next", "prev", "stop", "toggle", "status", "artist", "title"]:
+        print("Usage: player_control.py <next | prev | stop | toggle | status | artist | title>")
         exit()
 
     action = str(sys.argv[1])
@@ -32,6 +33,8 @@ if __name__ == '__main__':
         player = DeadbeefPlayer()
     elif MocpPlayer().is_running():
         player = MocpPlayer()
+    elif YoutubePlayer().is_running():
+        player = YoutubePlayer()
     elif action != "status":
         notif("Aucun lecteur n\'est activé !")
 
@@ -45,3 +48,7 @@ if __name__ == '__main__':
         player.toggle()
     elif action == "status":
         print(player)
+    elif action == "artist":
+        print(player.get_song().artist, end='')
+    elif action == "title":
+        print(player.get_song().title, end='')
