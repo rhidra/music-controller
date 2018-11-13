@@ -56,7 +56,7 @@ class YoutubePlayer(Player):
             tabs = [tab.get('entries')[tab.get('index')-1].get('url')
                         for win in jdata.get('windows')
                             for tab in win.get('tabs')]
-            return (tabs, tabs[jdata["windows"][0]["selected"]])
+            return (tabs, tabs[jdata["windows"][0]["selected"]-1])
 
     def get_yt_tabs(self):
         urls, current = self.get_urls_open()
