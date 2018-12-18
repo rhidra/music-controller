@@ -4,13 +4,16 @@ from utils import run_command
 
 class DeadbeefPlayer(Player):
     def get_status(self):
-        if run_command('deadbeef', '--nowplaying-tf', '%isplaying%') == '1':
-            state = 'PLAY'
-        elif run_command('deadbeef', '--nowplaying-tf', '%ispaused%') == '1':
-            state = 'PAUSE'
-        else:
-            state = 'STOP'
-        return state
+        try:
+            if run_command('deadbeef', '--nowplaying-tf', '%isplaying%') == '1':
+                state = 'PLAY'
+            elif run_command('deadbeef', '--nowplaying-tf', '%ispaused%') == '1':
+                state = 'PAUSE'
+            else:
+                state = 'STOP'
+            return state
+        except:
+            return 'STOP'
 
     def is_running(self):
         state = self.get_status()

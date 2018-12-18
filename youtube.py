@@ -9,7 +9,10 @@ class YoutubePlayer(Player):
     msg = "Impossible de modifier l'état du player Youtube !"
 
     def is_running(self):
-        return bool(len(self.get_yt_tabs()[0]))
+        try:
+            return bool(len(self.get_yt_tabs()[0]))
+        except:
+            return False
 
     def is_paused(self):
         return not self.is_running()

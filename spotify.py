@@ -4,8 +4,11 @@ from utils import run_command
 
 class SpotifyPlayer(Player):
     def get_status(self):
-        state = run_command('playerctl', 'status')
-        return state[:len(state)-1]
+        try:
+            state = run_command('playerctl', 'status')
+            return state[:len(state)-1]
+        except:
+            return ""
 
     def is_running(self):
         state = self.get_status()

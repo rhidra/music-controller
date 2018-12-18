@@ -4,8 +4,11 @@ from utils import run_command
 
 class MocpPlayer(Player):
     def get_status(self):
-        state = run_command('mocp', '-Q "%state"')
-        return state[2:len(state)-2]
+        try:
+            state = run_command('mocp', '-Q "%state"')
+            return state[2:len(state)-2]
+        except:
+            return 'STOP'
 
     def is_running(self):
         state = self.get_status()
