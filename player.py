@@ -20,7 +20,7 @@ class Player():
             else:
                 return "  {}".format(self.get_song())
         else:
-            return "Nothing running :("
+            return ""
 
     def get_song(self):
         s = Song(self.get_title(), self.get_artist()).__repr__()
